@@ -1,0 +1,4 @@
+set -x
+set -e
+[ -f "/etc/cron.hourly/irrigation-bone" ] && /bin/rm "/etc/cron.hourly/irrigation-bone"
+exit 0

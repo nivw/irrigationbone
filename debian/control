@@ -1,0 +1,16 @@
+Source: irrigationbone
+Section: misc
+Priority: optional
+Maintainer: Niv Gal Waizer <nivw2008@fastmail.fm>
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 8), dh-python, dh-systemd
+X-Python-Version: 2.7
+
+Package: irrigationbone
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-virtualenv (>=1.11),
+  ospi , python-logbook, mailutils, python-bs4, postfix, libsasl2-modules, python-pip
+Description: Irrigate the exact amount of water, your garden needs
+ This program gets the size each plant has and the type of plant. It then queries the meterological station and
+  irrigate the exact amount of water the plant needs.
+

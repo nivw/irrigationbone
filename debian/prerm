@@ -1,0 +1,5 @@
+#!/bin/sh
+set -x
+echo 'Remove left over lock file'
+[ -f '/tmp/irrigation.pid' ] && rm /tmp/irrigation.pid
+exit 0

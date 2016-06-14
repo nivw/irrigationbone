@@ -1,0 +1,13 @@
+SIZE = 1 # 1 meter^2 of plants of the same type
+RAIN_SIZE = 0
+PLANT_TYPE = 0.5 # grass is 0.55 and roses are 0.7
+MAX_PM_FACTOR = 7 # assert on (yesterday_pm/pm) < MAX_PM_FACTOR
+MIN_PM_THRESHOLD = 2
+MAX_HTTP_RETRY = 20
+ospi_config = '/usr/lib/python2.7/dist-packages/OSPi/data/sd.json'
+faucets_names = '/usr/lib/python2.7/dist-packages/OSPi/data/snames.txt'
+OSPI_PORT = 8080
+EMAIL = 'nivw2008@fastmail.fm'
+CWVW_CONFIG = '/home/debian/cwvw.json'
+EMAIL_SENDER = 'irrigation@fastmail.fm'
+FAULTY_ST_NAME = 'Failed to get meterological data'

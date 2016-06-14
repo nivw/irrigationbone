@@ -1,0 +1,13 @@
+Index: OSPi/ospi.py
+===================================================================
+--- OSPi.orig/ospi.py
++++ OSPi/ospi.py
+@@ -515,7 +515,7 @@ try:
+     GPIO.setup(pin_sr_dat, GPIO.OUT)
+     GPIO.setup(pin_sr_lat, GPIO.OUT)
+     GPIO.setup(pin_relay, GPIO.OUT)
+-    GPIO.setup(pin_rain_sense, GPIO.IN)
++    #GPIO.setup(pin_rain_sense, GPIO.IN)
+ except NameError:
+     pass     
+ 

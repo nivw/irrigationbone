@@ -1,0 +1,10 @@
+&am33xx_pinmux {
+	i2c1_pins: pinmux_i2c1_pins {
+	        pinctrl-single,pins = <
+			/* spi0_d1.i2c1_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2 */
+			BONE_P9_18 (PIN_INPUT_PULLUP | SLEWCTRL_FAST | MUX_MODE2)
+			/* spi0_cs0.i2c1_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2 */
+			BONE_P9_17 (PIN_INPUT_PULLUP | SLEWCTRL_FAST | MUX_MODE2)
+     		>;
+	};
+};

@@ -1,0 +1,1 @@
+[ -f '/etc/cron.hourly/irrigation-bone' ] && rm 

@@ -1,0 +1,8 @@
+etc/* etc/
+lib/* lib/
+#devicetree/* root/devicetree/
+patches/* root/patches/
+boot/dtbs/* boot/dtbs/
+
+#irrigationbone/schedule_irrigation.sh home/debian/irrigationbone/
+pypi/munch/* home/debian/pypi/munch/

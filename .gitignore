@@ -1,0 +1,4 @@
+irrigationbone.egg-info/*
+debian/irrigationbone*
+build/*
+*~

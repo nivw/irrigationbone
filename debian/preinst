@@ -1,0 +1,8 @@
+#!/bin/bash -x
+echo "preconfig postfix"
+debconf-set-selections <<< "postfix postfix/mailname string your.hostname.com"
+debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+
+#sed -i 's/^beaglebone$/irrigation-bone.mydomain.com/' /etc/hostname
+#sed -i 's/^127.0.1.1.*$/127.0.1.1	irrigation-bone.mydomain.com/' /etc/hosts
+#hostname irrigation-bone.mydomain.com

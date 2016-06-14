@@ -1,0 +1,12 @@
+[Unit]
+Description=Setup GPIO for irrigation-bone
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '/bin/echo 48 > /sys/class/gpio/export'
+ExecStart=/bin/sh -c '/bin/echo in > /sys/class/gpio/gpio48/direction'
+ExecStart=/bin/sh -c '/bin/echo both > /sys/class/gpio/gpio48/edge'
+
+[Install]
+WantedBy=multi-user.target
+

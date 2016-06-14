@@ -1,0 +1,3 @@
+#!/bin/bash
+source /usr/share/python/irrigationbone/bin/activate
+PYTHONPATH=/usr/share/python/irrigationbone/lib/python2.7/site-packages/irrigationbone/ schedule_irrigation >/dev/null

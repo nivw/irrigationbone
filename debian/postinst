@@ -1,0 +1,51 @@
+#!/bin/sh
+set -x
+PY_DIST='/usr/lib/python2.7/dist-packages/'
+systemctl daemon-reload
+[ -f '/lib/systemd/system/flow_sensor.service' ] &&systemctl enable flow_sensor.service
+
+grep -q '#GPIO.setup(pin_rain_sense, GPIO.IN)'  ${PY_DIST}OSPi/ospi.py
+if [ $? -ne 0 -a -f ' ${PY_DIST}OSPi/ospi.py' ] ; then
+  echo 'Patch rain sensor gpio'
+  cd  ${PY_DIST}OSPi/
+  patch < ~/patches/ospi.py.patch
+fi
+
+crontab -l -u debian |grep -q 'MAILTO="debian"'
+if [ $? -ne 0 ] ; then
+  echo 'Fix cron MAILTO'
+  crontab -u debian -l > /tmp/cron.tmp
+  cat << EOF >> /tmp/cron.tmp
+# assuming this is run on the BBB from the run directory
+MAILTO="debian"
+SHELL=/bin/bash
+
+EOF
+
+  crontab -u debian /tmp/cron.tmp
+  rm /tmp/cron.tmp
+  gpasswd -a debian crontab
+fi
+[ -f "/etc/cron.hourly/irrigation-bone" ] && /bin/rm "/etc/cron.hourly/irrigation-bone"
+
+#grep -q ds1307 /etc/rc.local
+#if [ $? -ne 0 ] ; then
+#  echo 'Patch rc.local to use hw RTC'
+#  cd /etc
+#  patch <~/patches/rc.local.patch && rm ~/patches/rc.local.patch
+#fi
+
+echo 'Setup Mail'
+newaliases
+chown root:root /etc/postfix/sasl_passwd && chmod 600 /etc/postfix/sasl_passwd
+postmap hash:/etc/postfix/sasl_passwd
+systemctl restart postfix
+
+echo "Verify python in virtual env is for ARM"
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+file $(readlink -f /usr/share/python/${DPKG_MAINTSCRIPT_PACKAGE}/bin/python) |grep -q x86
+[ $? -eq 0 ] && printf "${RED}python bin is for x86${NC} it should be for ARM\n"
+
+echo 'must reboot to fix gpio'
+exit 0

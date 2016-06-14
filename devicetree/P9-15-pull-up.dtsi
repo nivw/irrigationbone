@@ -1,0 +1,23 @@
+/{
+       fragment@0 {
+           target = <&am33xx_pinmux>;
+             __overlay__ {
+                  pinctrl_test: P9_15_pullup_Pins {
+			pinctrl-single,pins = <
+                            0x040 0x37  /* P9_15 16 | enable INPUT |pullup to 1|enable pullup| MODE7 */ 
+			>;
+		  };
+             };
+       };
+
+       fragment@1 {
+		__overlay__ {
+			test_helper: helper {
+				compatible = "bone-pinmux-helper";
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_test>;
+				status = "okay";
+			};
+		};
+	};
+};
